@@ -1,18 +1,20 @@
 'use strict';
 
 const weatherMap = new Map([
-  ['London', '10'],
-  ['Minsk', '7']
+  ['London', 10],
+  ['Minsk', 7],
+  ['Paris', 8]
 ]);
 
 console.log(weatherMap);
 
-const weatherObject = {
-  london: 10,
-  minsk: 7,
-  paris: 8
+for (const [key, value] of weatherMap) {
+  console.log(key);
+  console.log(value);
 }
 
-console.log(Object.entries(weatherObject));
-const weatherMap2 = new Map(Object.entries(weatherObject))
-console.log(weatherMap2);
+console.log([...weatherMap]);
+
+console.log(weatherMap.keys());
+console.log([...weatherMap.keys()]);
+console.log([...weatherMap.values()]);
