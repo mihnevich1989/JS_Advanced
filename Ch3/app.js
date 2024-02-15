@@ -5,16 +5,7 @@ const weatherMap = new Map([
   ['Minsk', 7],
   ['Paris', 8]
 ]);
-
 console.log(weatherMap);
+const weatherMap2 = new Map([...weatherMap].map(el => el.reverse()));
+console.log(weatherMap2);
 
-for (const [key, value] of weatherMap) {
-  console.log(key);
-  console.log(value);
-}
-
-console.log([...weatherMap]);
-
-console.log(weatherMap.keys());
-console.log([...weatherMap.keys()]);
-console.log([...weatherMap.values()]);
