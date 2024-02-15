@@ -1,22 +1,18 @@
 'use strict';
 
-const weatherMap = new Map();
-weatherMap
-  .set('London', '10')
-  .set('Minsk', '7');
+const weatherMap = new Map([
+  ['London', '10'],
+  ['Minsk', '7']
+]);
 
-const arr = [1, 2, 3];
-const obj = { a: 1 }
-console.log(weatherMap.has('Minsk'));
-console.log(weatherMap.has('Msc'));
-console.log(weatherMap.get('Minsk'));
-// weatherMap.delete('London')
-// console.log(weatherMap.delete('London'));
-// weatherMap.clear()
-weatherMap.set(arr, 'array')
-weatherMap.set(obj, { b: 2 });
-console.log(weatherMap.get(arr));
-console.log(weatherMap.get(obj));
 console.log(weatherMap);
-console.log(weatherMap.size)
 
+const weatherObject = {
+  london: 10,
+  minsk: 7,
+  paris: 8
+}
+
+console.log(Object.entries(weatherObject));
+const weatherMap2 = new Map(Object.entries(weatherObject))
+console.log(weatherMap2);
