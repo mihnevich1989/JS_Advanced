@@ -1,18 +1,21 @@
 'use strict';
-console.log(Number('10'));
-console.log(+'11');
-console.log(Number.parseInt('12', 10));
-console.log(Number.parseInt('13 sec', 10));
-console.log(Number.parseInt('sec 14', 10)); // NaN
 
-console.log(Number.parseFloat('12.5', 10));
-console.log(Number.parseFloat('13.5 sec', 10));
-console.log(Number.parseFloat('sec 14.5', 10)); // NaN
+console.log(Math.sqrt(36));
+console.log(36 ** (1 / 2));
 
-console.log(Number.isNaN(Number('12abc')));
-console.log(10 / 0);
-console.log(Number.isFinite(10 / 0));
-console.log(Number.isFinite(10));
+console.log(Math.cbrt(27));
+console.log(16 ** (1 / 4));
 
-console.log(Number.isInteger(10));
-console.log(Number.isInteger(10.5));
+console.log(Math.sign(-100));
+console.log(Math.sign(35));
+console.log(Math.abs(-350));
+console.log(Math.exp(2));
+
+console.log(Math.max(1, 20, -2, '33', true, 15, 33.5));
+console.log(Math.max(1, 20, -2, '33', true, 15, '45s')); //NaN
+console.log(Math.min(1, 20, -2, '33', true, 15, '-10'));
+
+const arr = [1, 20, -2, '33', true, 15, 33.5];
+console.log(Math.max(...arr));
+console.log(arr.reduce((a, b) => a > b ? a : b));
+console.log(Math.random());
