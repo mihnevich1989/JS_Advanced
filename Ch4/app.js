@@ -1,9 +1,6 @@
 'use strict';
 
-const isEven = n => n % 2 === 0;
-function isEvenFunc(n) {
-  return n % 2 === 0;
-}
+const bigNum = 350_500_000;
+const bigNum2 = 350500000;
+console.log(bigNum === bigNum2); // true
 
-console.log(isEven(2));
-console.log(isEvenFunc(7));
