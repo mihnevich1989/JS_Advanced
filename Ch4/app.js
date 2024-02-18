@@ -1,6 +1,9 @@
 'use strict';
 
-function btwNumber(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
+const isEven = n => n % 2 === 0;
+function isEvenFunc(n) {
+  return n % 2 === 0;
 }
-console.log(btwNumber(2, 3));
+
+console.log(isEven(2));
+console.log(isEvenFunc(7));
