@@ -1,30 +1,27 @@
 'use strict';
 
-const options1 = {
-  style: 'currency',
-  currency: 'BYN',
-  useGrouping: false
-};
-const options2 = {
-  style: 'currency',
-  currency: 'USD'
-};
+function convertCurrency(summ, insertedCurrency, setedCurrency) {
+  const allCurrencies = [
+    { name: 'USD', mult: 1 },
+    { name: 'BYN', mult: 1 / 60 },
+    { name: 'EUR', mult: 1.1 }
+  ];
+  const initial = allCurrencies.find(c => c.name == insertedCurrency);
+  if (!initial) return null;
+  const convert = allCurrencies.find(c => c.name == setedCurrency);
+  if (!convert) return null;
 
-const options3 = {
-  style: 'decimal'
-};
+  return new Intl.NumberFormat('ru-RU', {
+    style: 'currency',
+    currency: convert.name
+  }).format(summ * initial.mult / convert.mult);
+}
 
-const options4 = {
-  style: 'percent'
-};
-
-const options5 = {
-  style: 'unit',
-  unit: 'celsius' //fahrenheit
-};
-
-console.log(new Intl.NumberFormat('by-BY', options1).format(2300));
-console.log(new Intl.NumberFormat('en-EN', options2).format(2300));
-console.log(new Intl.NumberFormat('ru-RU', options3).format(10000));
-console.log(new Intl.NumberFormat('ru-RU', options4).format(.1));
-console.log(new Intl.NumberFormat('by-BY', options5).format(25));
+console.log(convertCurrency(200, 'BYN', 'USD'));
+console.log(convertCurrency(200, 'BYN', 'EUR'));
+console.log(convertCurrency(200, 'USD', 'BYN'));
+console.log(convertCurrency(200, 'EUR', 'BYN'));
+console.log(convertCurrency(200, 'USD', 'EUR'));
+console.log(convertCurrency(200, 'EUR', 'USD'));
+console.log(convertCurrency(200, 'CYN', 'USD'));
+console.log(convertCurrency(200, 'USD', 'CYN'));
