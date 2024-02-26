@@ -1,29 +1,13 @@
 'use strict';
 
-const now = new Date();
-console.log(now);
+const date1 = new Date(2024, 10, 15);
+const date2 = new Date(2024, 11, 15);
+console.log(+date1);
+console.log(Number(date1));
+console.log(date2 - date1);
 
-console.log(new Date('01-01-2024'));
-console.log(new Date('01/02/24'));
-console.log(new Date('2024/03/01'));
-console.log(new Date('01 apr 2024'));
-console.log(new Date('01 апр 2024')); // invalid date
+function getDaysBetweenDates(dateF, dateS) {
+  return (dateS - dateF) / (1000 * 60 * 60 * 24);
+}
 
-console.log(new Date(2024/12/10));
-console.log(new Date(2024,12,10 + 100));
-console.log(new Date(2024,12,10, 10, 5, 10));
-console.log(new Date(0));
-console.log(new Date(1 * 24 * 60 * 60 * 1000));
-console.log(Date.now());
-console.log(new Date(Date.now()));
-
-console.log(now.getFullYear());
-console.log(now.getMonth());
-console.log(now.getDate());
-console.log(now.getDay());
-console.log(now.getHours());
-console.log(now.getMinutes());
-console.log(now.getSeconds());
-console.log(now.getTime());
-console.log(new Date(now.setFullYear(2030)));
-
+console.log(getDaysBetweenDates( date1, date2));
