@@ -62,9 +62,11 @@ Cart.prototype.decreaseAmount = function (id) {
 };
 
 const cart = new Cart();
+const cart2 = new Cart();
 cart.addProduct(prod1);
-cart.addProduct(prod2);
+cart2.addProduct(prod2);
 
 console.log(cart);
 cart.decreaseAmount(1);
 console.log(cart);
+console.log(cart2);
