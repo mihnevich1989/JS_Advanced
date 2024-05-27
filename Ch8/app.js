@@ -1,21 +1,44 @@
 'use strict';
 
-class Book {
-  isRead = false;
+const task = {
+  title: 'Task1',
+  dueTo: new Date('2024/01/01'),
 
-  constructor(author, title) {
-    this.author = author;
+  get isOverdue() {
+    return this.dueTo < new Date();
+  },
+
+  set isOverdue(isOverdueTask) {
+    if (!isOverdueTask) {
+      this.dueTo = new Date();
+    }
+  }
+};
+
+console.log(task.isOverdue);
+task.isOverdue = false;
+console.log(task);
+
+
+class Task {
+  constructor(title, dueDate) {
     this.title = title;
+    this.dueDate = dueDate;
   }
 
-  toogleRead() {
-    this.isRead = !this.isRead;
+  get isOverdue() {
+    return this.dueDate < new Date();
+  }
+
+  set dueDate(date) {
+    if (date < new Date()) {
+      return;
+    }
+
+    this._dueDate = date;
   }
 
 }
-
-const lotr = new Book('R.R. Tolkien', 'Lord of the ring');
-
-console.log(lotr);
-console.log(lotr instanceof Book);
-console.log(lotr.__proto__);
+const newTask = new Task('TASK 2', new Date());
+console.log(newTask.dueDate = new Date('2023/1/1'));
+console.log(newTask);
