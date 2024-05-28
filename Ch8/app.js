@@ -1,20 +1,20 @@
 'use strict';
 
-class Test {
-  static a = 1;
-  static hello(){
-    console.log('Hello');
+class Car {
+  #vin = 12345678;
+  speed;
+
+  #changeVin() {
+    console.log('changed');
   }
 
-  static {
-    let b = 5;
-    this.a += b
+  test() {
+    this.#changeVin();
   }
 
+  static #field = 1;
 };
 
-const test = new Test();
+const newCar = new Car();
 
-Test.hello()
-
-console.log(Test.a);
+newCar.test()
