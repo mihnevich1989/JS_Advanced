@@ -17,3 +17,4 @@ const admin = Object.create(user);
 admin.init('adm', '3333')
 admin.isAdmin = true;
 console.log(admin);
+ 
