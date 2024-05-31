@@ -9,20 +9,20 @@ class Book {
     console.log(`${this.title} was written by ${this.author}.`);;
   };
 }
+const book1 = new Book('LOTR', 'Tolkien');
 
-class AudioBook extends Book {
-  constructor(title, author, runtime) {
+book1.getDescription();
+
+class EBook extends Book {
+  constructor(title, author, pages) {
     super(title, author);
-    this.runtime = runtime;
+    this.pages = pages;
   }
 
-  log = function () {
-    console.log(`runtime of ${this.title} book is ${this.runtime}`);
+  getDescription = function () {
+    console.log(`${this.title} was written by ${this.author}. Pages: ${this.pages}`);;
   };
 }
 
-const book = new AudioBook('LOTR', 'Tolkien', 20 * 60);
-
-console.log(book);
-book.getDescription();
-book.log();
+const book2 = new EBook('LOTR', 'Tolkien', 1000);
+book2.getDescription();
