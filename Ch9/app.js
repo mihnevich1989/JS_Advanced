@@ -1,28 +1,51 @@
 'use strict';
 
-class Book {
-  constructor(title, author) {
-    this.title = title;
-    this.author = author;
-  }
-  getDescription = function () {
-    console.log(`${this.title} was written by ${this.author}.`);;
-  };
-}
-const book1 = new Book('LOTR', 'Tolkien');
-
-book1.getDescription();
-
-class EBook extends Book {
-  constructor(title, author, pages) {
-    super(title, author);
-    this.pages = pages;
+class Enemy {
+  constructor(health) {
+    this.health = health;
   }
 
-  getDescription = function () {
-    console.log(`${this.title} was written by ${this.author}. Pages: ${this.pages}`);;
+  recieveDamage = function (dmg) {
+    this.health -= dmg;
+    console.log(`Health: ${this.health}`);
   };
 }
 
-const book2 = new EBook('LOTR', 'Tolkien', 1000);
-book2.getDescription();
+class Sword {
+  #damage;
+  constructor(damage) {
+    this.#damage = damage;
+  }
+
+  strike(target) {
+    target.recieveDamage(this.#damage);
+  }
+}
+
+class Ork extends Enemy {
+  constructor(health) {
+    super(health);
+  }
+
+  recieveDamage = function (dmg) {
+    if (Math.random() < .5) {
+      console.log(`Missed`);
+      return;
+    } else if (this.health <= dmg) {
+      this.health = 0;
+      console.log(`Ork is died`);
+      return;
+    }
+    this.health -= dmg;
+    console.log(`Ork health: ${this.health}`);
+  };
+}
+
+const sword = new Sword(35);
+const ork = new Ork(100);
+
+console.log(ork);
+
+sword.strike(ork);
+sword.strike(ork);
+sword.strike(ork);
