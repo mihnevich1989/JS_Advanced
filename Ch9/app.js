@@ -1,51 +1,40 @@
 'use strict';
 
-class Enemy {
-  constructor(health) {
-    this.health = health;
+class Wallet {
+  balance = 0;
+
+  add(sum) {
+    this.balance += sum;
+    return this;
   }
 
-  recieveDamage = function (dmg) {
-    this.health -= dmg;
-    console.log(`Health: ${this.health}`);
-  };
-}
-
-class Sword {
-  #damage;
-  constructor(damage) {
-    this.#damage = damage;
-  }
-
-  strike(target) {
-    target.recieveDamage(this.#damage);
+  remove(sum) {
+    this.balance -= sum;
+    return this;
   }
 }
 
-class Ork extends Enemy {
-  constructor(health) {
-    super(health);
+const wallet = new Wallet();
+const res = wallet.add(100).remove(20);
+console.log(res);
+
+class Builder {
+  house = {};
+
+  addRoof() {
+    this.house.roof = 'Roof';
+    return this;
   }
 
-  recieveDamage = function (dmg) {
-    if (Math.random() < .5) {
-      console.log(`Missed`);
-      return;
-    } else if (this.health <= dmg) {
-      this.health = 0;
-      console.log(`Ork is died`);
-      return;
-    }
-    this.health -= dmg;
-    console.log(`Ork health: ${this.health}`);
-  };
+  addFloor() {
+    this.house.floor = 'Floor';
+    return this;
+  }
+
+  execute() {
+    return this.house;
+  }
 }
 
-const sword = new Sword(35);
-const ork = new Ork(100);
-
-console.log(ork);
-
-sword.strike(ork);
-sword.strike(ork);
-sword.strike(ork);
+const res2 = new Builder().addRoof().addFloor().execute()
+console.log(res2);
