@@ -1,16 +1,13 @@
 'use strict';
 
-function req() {
-  const request = new XMLHttpRequest();
+const request = new XMLHttpRequest();
 
-  request.open('GET', 'https://dummyjson.com/products/');
-  request.send();
+request.open('GET', 'https://dummyjson.com/products/');
+request.send();
 
-  request.addEventListener('load', function () {
-    const { products } = JSON.parse(this.responseText);
-    const sum = products.reduce((acc, product) => acc += product.price, 0);
-    console.log(sum / products.length);
-  });
-}
+request.addEventListener('load', function () {
+  const { products } = JSON.parse(this.responseText);
+  const sum = products.reduce((acc, product) => acc += product.price, 0);
+  console.log(sum / products.length);
+});
 
-req();
