@@ -1,28 +1,29 @@
 'use strict';
 
-const prom = new Promise((resolve, reject) => {
-  if (new Date() < new Date('01/01/2025')) {
-    reject(new Error('Error'));
-  }
-  resolve('Success');
-});
+let xhr = new XMLHttpRequest();
 
-prom
-  .then(data => console.log(data))
-  .catch(err => console.log(err));
+function myFetch(URL) {
+  return new Promise((resolve, reject) => {
+    xhr.open('GET', URL);
+    xhr.responseType = 'json';
+    xhr.send();
 
-function timeout(sec) {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, sec * 1000);
+    xhr.addEventListener('load', function () {
+      this.status >= 400 ? reject(new Error(this.status)) : resolve(xhr.response);
+    });
+    xhr.addEventListener('error', function () {
+      reject(new Error(this.status));
+    });
+    xhr.addEventListener('timeout', function () {
+      reject(new Error('Timeout'));
+    });
   });
 }
 
-timeout(1)
-  .then(() => {
-    console.log(1);
-    return timeout(2);
-  }).then(() => {
-    console.log(2);
+myFetch('https://dummyjson.com/productss')
+  .then(data => {
+    console.log(data);
+  })
+  .catch(err => {
+    console.log(err);
   });
