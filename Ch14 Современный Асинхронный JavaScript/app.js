@@ -1,21 +1,25 @@
 'use strict';
 
-async function getProducts() {
-  try {
-    const resProducts = await fetch('https://dummyjson.com/products');
-    if (!resProducts.ok) {
-      throw new Error(resProducts.status);
-    }
-    const { products } = await resProducts.json();
-    console.log(products);
-    const resProduct = await fetch('https://dummyjson.com/product/' + products[0].id);
-    const product = await resProduct.json();
-    console.log(product);
-  } catch (error) {
-    console.log(error);
-  } finally {
-    console.log('Finally');
-  }
+function getMyCoordinates() {
+  return new Promise((resolve, reject) => {
+    navigator.geolocation.getCurrentPosition(function (pos) {
+      resolve(pos.coords);
+    }, function (err) {
+      reject(console.warn(`ERROR(${err.code}): ${err.message}`));
+    });
+  });
 }
 
-getProducts();
+async function getMyCity() {
+  try {
+    const coords = await getMyCoordinates();
+    const resBigdatacloud = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${coords.latitude}&longitude=${coords.longitude}&localityLanguage=ru`);
+    const body = await resBigdatacloud.json();
+    console.log(body);
+  } catch (error) {
+    console.log(error);
+  }
+
+}
+
+getMyCity();
