@@ -1,26 +1,26 @@
 'use strict';
 
-const asyncArrow = async () => {
-  try {
-    const response = await fetch('https://dummyjson.com/products');
-    return await response.json();
-  } catch (e) {
-    console.error(e);
-    throw e;
-  }
-};
+async function getAllProducts() {
+  const response = await fetch('https://dummyjson.com/products');
+  return response.json();
+}
 
-// console.log('1');
+async function getProductsById(id) {
+  const response = await fetch('https://dummyjson.com/products/' + id);
+  return response.json();
+}
 
-// asyncArrow()
-//   .then(data => {
-//     console.log(data);
-//   }).catch(e => console.error(e))
-//   .finally(console.log('2'));
+async function main() {
+  const { products } = await getAllProducts();
+  const res = await Promise.all(products.map(product => getProductsById(product.id)));
 
-(async () => {
-  console.log('1');
-  const res = await asyncArrow();
   console.log(res);
-  console.log('2');
-})();
+
+  /* for (const product of products) {
+    const resp = await getProductsById(product.id);
+    console.log(resp);
+  } */
+
+}
+
+main();
