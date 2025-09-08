@@ -10,7 +10,7 @@ const asyncArrow = async () => {
   }
 };
 
-console.log('1');
+// console.log('1');
 
 // asyncArrow()
 //   .then(data => {
